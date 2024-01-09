@@ -16,4 +16,16 @@ public class PortfolioNewsAnalyzer {
   public String tagPos(String input){
     return tagger.tagString(input);
   }
+
+  public static HashSet<String> extractProperNouns(String taggedOutput){
+    HashSet<String> propNounSet = new HashSet<String>();
+    String[] split = taggedOutput.split(" ");
+    for(String token:split){
+      String[] splitTokens = token.split("_");
+      if(splitTokens[1].equals("NNP")){
+        propNounSet.add(splitTokens[0]);
+      }
+    }
+    return propNounSet;
+  }
 }
